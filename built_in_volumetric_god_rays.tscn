@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://gc0rx5lundpk"]
+
+[ext_resource type="MeshLibrary" uid="uid://cag8a6uil6gv0" path="res://assets/terrain/tilemap_nature.tres" id="1_2mebj"]
+[ext_resource type="MeshLibrary" uid="uid://b0664mhoib0g7" path="res://assets/terrain/tilemap.tres" id="1_7phy0"]
+[ext_resource type="Script" path="res://camera_3d.gd" id="3_6yt2k"]
+[ext_resource type="Script" path="res://player.gd" id="3_80kci"]
+[ext_resource type="Script" path="res://fps.gd" id="5_cy4n8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h00bx"]
+sky_top_color = Color(0.294276, 0.851531, 1, 1)
+sky_horizon_color = Color(0.939531, 0.922257, 0.997975, 1)
+ground_curve = 0.0303144
+
+[sub_resource type="Sky" id="Sky_kwvvn"]
+sky_material = SubResource("ProceduralSkyMaterial_h00bx")
+
+[sub_resource type="Environment" id="Environment_8hvhb"]
+background_mode = 2
+sky = SubResource("Sky_kwvvn")
+reflected_light_source = 2
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
+volumetric_fog_albedo = Color(1, 1, 0.815686, 1)
+volumetric_fog_anisotropy = 0.5
+volumetric_fog_length = 20.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_crfkd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1uvib"]
+
+[node name="Built-in Volumetric God Rays" type="Node3D"]
+
+[node name="NatureGridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_2mebj")
+cell_size = Vector3(1, 1, 1)
+cell_octant_size = 4
+data = {
+"cells": PackedInt32Array(65539, 11, 1048579, 65541, 65533, 3, 65554, 8, 655363, 65558, 65532, 3, 65550, 65527, 655363, 65548, 3, 1441795, 65541, 10, 1441793, 65540, 5, 1048577, 65552, 65533, 1441793, 65558, 4, 1048577, 65547, 9, 1441793, 65546, 65532, 655361, 65557, 10, 655360, 65552, 3, 0, 65540, 65528, 655360, 65555, 65527, 0, 65545, 2, 655360, 65558, 7, 655366, 65552, 9, 6, 65542, 8, 655364, 65549, 0, 1048580, 65544, 65528, 1441798, 65557, 0, 1441800, 65540, 0, 1048581, 65539, 65530, 8, 65545, 65535, 655368, 65547, 6, 655366, 65553, 6, 1048586, 65555, 65532, 1048589, 65543, 65530, 1048590, 65549, 65530, 1441806, 65543, 4, 1441806, 65552, 65527, 4, 65549, 65532, 7, 65558, 65526, 7, 65548, 65527, 655365)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="GroundGridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_7phy0")
+cell_size = Vector3(1, 1, 1)
+cell_octant_size = 4
+data = {
+"cells": PackedInt32Array(4, 3, 655366, 4, 65533, 655366, 4, 65527, 655366, 10, 65527, 655366, 10, 65533, 655366, 10, 3, 655366, 4, 9, 655366, 10, 9, 655366, 16, 9, 655366, 16, 3, 655366, 16, 65533, 655366, 16, 65527, 655366, 22, 65527, 655366, 22, 65533, 655366, 22, 3, 655366, 22, 9, 655366, 24, 65523, 1441801, 65558, 65519, 1441798, 65552, 65519, 1441798, 65546, 65519, 1441798, 65540, 65519, 1441798, 22, 65523, 1048581, 20, 65523, 1048581, 4, 65523, 1048581, 2, 65523, 1048581, 18, 65523, 1441801, 6, 65523, 1441797, 8, 65523, 1441801, 10, 65523, 1441801, 12, 65523, 1441797, 16, 65523, 1441801, 14, 65523, 1441797, 65559, 65528, 1441792, 65555, 0, 655360, 65545, 6, 1048579, 65540, 65533, 1048578, 65546, 65532, 1048578, 65546, 2, 1048578, 65540, 3, 1048578)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8hvhb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.518027, 0.855364, 0, -0.855364, 0.518027, 14.3983, 20, 0)
+light_color = Color(1, 1, 0.941176, 1)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25218, 2.82087, 4.34366)
+script = ExtResource("3_80kci")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+script = ExtResource("3_6yt2k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_crfkd")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_1uvib")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="fps" type="Label" parent="CanvasLayer"]
+offset_left = 14.0
+offset_top = -5.0
+offset_right = 234.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 60
+script = ExtResource("5_cy4n8")

@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://p2r7bkexqi84"]
+
+[ext_resource type="Texture2D" uid="uid://br01a0ikedvvm" path="res://assets/UI/forest_temple_concept_art_by_fernandobravan_deu3d6m.png" id="1_d8i84"]
+[ext_resource type="Script" path="res://menu.gd" id="1_i6yva"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i6yva")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_d8i84")
+expand_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -425.0
+offset_top = -127.5
+offset_right = 425.0
+offset_bottom = 127.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Built-in Volumetric God Rays" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Built-in Volumetric God Rays"
+
+[node name="Gdshader Volumetric God Rays" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Gdshader Volumetric God Rays"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+
+[connection signal="button_down" from="MarginContainer/VBoxContainer/Built-in Volumetric God Rays" to="." method="_on_builtin_volumetric_god_rays_button_down"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/Gdshader Volumetric God Rays" to="." method="_on_gdshader_volumetric_god_rays_button_down"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_button_down"]
