@@ -12,11 +12,11 @@ func _process(delta: float) -> void:
 
 
 func _on_builtin_volumetric_god_rays_button_down() -> void:
-    get_tree().change_scene_to_file("res://built_in_volumetric_god_rays.tscn")
+    get_tree().change_scene_to_file("res://Built-in Volumetric God Rays.tscn")
 
 
 func _on_gdshader_volumetric_god_rays_button_down() -> void:
-    pass # Replace with function body.
+    get_tree().change_scene_to_file("res://Gdshader Volumetric God Rays.tscn")
 
 
 func _on_exit_button_down() -> void:
