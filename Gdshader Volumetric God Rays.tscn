@@ -118,14 +118,14 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25218, 2.82087, 4.34366)
+transform = Transform3D(-0.997411, 0, 0.0719152, 0, 1, 0, -0.0719152, 0, -0.997411, 14.0112, 2.82087, -10.1025)
 script = ExtResource("3_q4g7c")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 script = ExtResource("4_wyu2p")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player/Camera3D"]
-remote_path = NodePath("..")
+remote_path = NodePath("../../../SubViewportContainer/SubViewport/Camera3D_Viewport")
 update_scale = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
@@ -166,7 +166,7 @@ metadata/SimpleGrassTextured = "2.0.5"
 environment = SubResource("Environment_ofsgl")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 0.518027, 0.855364, 0, -0.855364, 0.518027, 14.3983, 20, 0)
+transform = Transform3D(1, 0, 0, 0, 0.744113, 0.668053, 0, -0.668053, 0.744113, 14, 16, 12)
 light_color = Color(1, 1, 0.941176, 1)
 light_energy = 2.0
 shadow_enabled = true
@@ -183,15 +183,18 @@ layout_mode = 0
 script = ExtResource("9_3agek")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+visibility_layer = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
-handle_input_locally = false
 size = Vector2i(2560, 1440)
 render_target_clear_mode = 2
 render_target_update_mode = 4
 
 [node name="Camera3D_Viewport" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.983885, -0.104513, -0.145077, -7.45058e-09, 0.81138, -0.584519, 0.178802, -0.575099, -0.798305, 10.238, 3.11611, -11.2132)
+transform = Transform3D(-0.997411, 0, 0.0719152, 0, 1, 0, -0.0719152, 0, -0.997411, 14.0112, 2.82087, -10.1025)
