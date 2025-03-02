@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://gc0rx5lundpk"]
+[gd_scene load_steps=22 format=4 uid="uid://gc0rx5lundpk"]
 
 [ext_resource type="MeshLibrary" uid="uid://cag8a6uil6gv0" path="res://assets/terrain/tilemap_nature.tres" id="1_3g3r1"]
 [ext_resource type="MeshLibrary" uid="uid://b0664mhoib0g7" path="res://assets/terrain/tilemap.tres" id="2_x86qo"]
@@ -80,6 +80,8 @@ volumetric_fog_density = 0.1
 volumetric_fog_albedo = Color(1, 1, 0.815686, 1)
 volumetric_fog_anisotropy = 0.5
 volumetric_fog_length = 20.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6gmyj"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3kaf4"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -172,12 +174,19 @@ light_energy = 2.0
 shadow_enabled = true
 
 [node name="Control" type="Control" parent="."]
+visibility_layer = 2
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="ColorRect" type="ColorRect" parent="Control"]
+visible = false
+visibility_layer = 4
+material = SubResource("CanvasItemMaterial_6gmyj")
+
 [node name="ColorRect_LightRays" type="ColorRect" parent="Control"]
+visibility_layer = 2
 material = SubResource("ShaderMaterial_ovld8")
 layout_mode = 0
 script = ExtResource("9_3agek")
